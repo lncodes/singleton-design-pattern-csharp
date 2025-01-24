@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-markdown:
+  documentation:
     runs-on: ubuntu-latest
 
     steps:

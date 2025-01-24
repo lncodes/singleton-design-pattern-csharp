@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  build-and-analyze:
+  sonarcloud:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,11 +42,12 @@ jobs:
             /k:"lncodes_singleton-design-pattern-csharp" \
             /o:"lncodes" \
             /d:sonar.host.url="https://sonarcloud.io" \
-            /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.cs.opencover.reportsPaths=./TestResults/*/coverage.cobertura.xml
+
 
       - name: Build Project for Analysis
         run: dotnet build ./src --configuration Release --no-restore
 
       - name: End SonarCloud analysis
-        run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
