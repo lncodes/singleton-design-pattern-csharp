@@ -33,14 +33,6 @@ jobs:
       - name: Setup sonar scanner
         run: dotnet tool install --global dotnet-sonarscanner
 
-      - name: Begin SonarCloud analysis
-        run: |
-          dotnet sonarscanner begin \
-            /k:"lncodes_singleton-design-pattern-csharp" \
-            /o:"lncodes" \
-            /d:sonar.host.url="https://sonarcloud.io" \
-            /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-
       - name: Build Project for Analysis
         run: dotnet build ./src --configuration Release --no-restore
 
@@ -51,8 +43,14 @@ jobs:
           /p:CoverletOutputFormat=opencover \
           /p:CoverletOutput=./TestResults/
 
-      - name: End SonarCloud analysis
+      - name: Begin SonarCloud analysis
         run: |
-          dotnet sonarscanner end \
-          /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
-          /d:sonar.cs.opencover.reportsPaths=./TestResults/coverage.opencover.xml
+          dotnet sonarscanner begin \
+            /k:"lncodes_singleton-design-pattern-csharp" \
+            /o:"lncodes" \
+            /d:sonar.host.url="https://sonarcloud.io" \
+            /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
+            /d:sonar.cs.opencover.reportsPaths=./TestResults/coverage.opencover.xml
+
+      - name: End SonarCloud analysis
+        run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
