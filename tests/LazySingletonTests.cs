@@ -1,34 +1,34 @@
 ﻿using Xunit;
 
-namespace Lncodes.DesignPattern.Singleton.Tests;
+namespace Lncodes.DesignPatterns.Singleton.Tests;
 
 public sealed class LazySingletonTests : SingletonTests
 {
     [Fact]
-    public void LazySingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazySingleton.GetInstance);
+    public void LazySingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazySingleton.GetInstance);
 
     [Fact]
-    public void LazyGenericSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazyGenericSingleton<LazySingletonTests>.GetInstance);
+    public void LazyGenericSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazyGenericSingleton<LazySingletonTests>.GetInstance);
 
     [Fact]
-    public void BillPughSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(BillPughSingleton.GetInstance);
+    public void BillPughSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(BillPughSingleton.GetInstance);
 
     [Fact]
-    public void LazyClassicThreadSafeSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazyClassicThreadSafeSingleton.GetInstance);
+    public void LazyClassicThreadSafeSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazyClassicThreadSafeSingleton.GetInstance);
 
     [Fact]
-    public void LazyModernThreadSafeSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazyModernThreadSafeSingleton.GetInstance);
+    public void LazyModernThreadSafeSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazyModernThreadSafeSingleton.GetInstance);
 
     [Fact]
-    public void LazyClassicThreadSafeGenericSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazyClassicThreadSafeGenericSingleton<LazySingletonTests>.GetInstance);
+    public void LazyClassicThreadSafeGenericSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazyClassicThreadSafeGenericSingleton<LazySingletonTests>.GetInstance);
 
     [Fact]
-    public void LazyModernThreadSafeGenericSingleton_Should_Return_Same_Instance() =>
-        AssertSingletonInstance(LazyModernThreadSafeGenericSingleton<LazySingletonTests>.GetInstance);
+    public void LazyModernThreadSafeGenericSingleton_GetInstance_MultipleCalls_ReturnsSameInstance() =>
+        AssertSingletonInstanceEqual(LazyModernThreadSafeGenericSingleton<LazySingletonTests>.GetInstance);
 }

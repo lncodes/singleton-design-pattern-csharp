@@ -1,4 +1,4 @@
-﻿namespace Lncodes.DesignPattern.Singleton;
+﻿namespace Lncodes.DesignPatterns.Singleton;
 
 public abstract class LazyClassicThreadSafeGenericSingleton<T> where T : class, new()
 {
