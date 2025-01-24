@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lncodes.DesignPattern.Singleton;
+namespace Lncodes.DesignPatterns.Singleton;
 
 public abstract class LazyModernThreadSafeGenericSingleton<T> where T : class, new()
 {
