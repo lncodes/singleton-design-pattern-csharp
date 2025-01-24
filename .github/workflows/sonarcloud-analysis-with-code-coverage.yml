@@ -33,12 +33,9 @@ jobs:
       - name: Setup sonar scanner
         run: dotnet tool install --global dotnet-sonarscanner
 
-      - name: Build Project for Analysis
-        run: dotnet build ./src --configuration Release --no-restore
-
       - name: Run tests with Coverage
         run: |
-          dotnet test --no-build --verbosity normal \
+          dotnet test --verbosity normal --no-build --no-restore \
           /p:CollectCoverage=true \
           /p:CoverletOutputFormat=opencover \
           /p:CoverletOutput=./TestResults/
@@ -51,6 +48,9 @@ jobs:
             /d:sonar.host.url="https://sonarcloud.io" \
             /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.cs.opencover.reportsPaths=./TestResults/coverage.opencover.xml
+
+      - name: Build Project for Analysis
+        run: dotnet build ./src --configuration Release --no-restore
 
       - name: End SonarCloud analysis
         run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
